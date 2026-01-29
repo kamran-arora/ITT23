@@ -25,6 +25,7 @@ model = itt23.ODEModel(
     theta_type="fixed",
     use_I=True,
     use_radial_theta=False,
+    use_exp_stress=False,
 )
 params = itt23.ODEParams()
 
@@ -58,6 +59,7 @@ model = itt23.ODEModel(
     theta_type="fixed",
     use_I=True,
     use_radial_theta=False,
+    use_exp_stress=False,
 )
 
 betas = jnp.array([0.1, 0.2, 0.3, 0.4])
