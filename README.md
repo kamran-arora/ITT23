@@ -29,7 +29,7 @@ model = itt23.ODEModel(
 )
 params = itt23.ODEParams()
 
-all_states, history = run_simulation(model, params, jr.key(123))
+all_states, stress_states, history = run_simulation(model, params, jr.key(123))
 
 print(f"Final Area: {history[-1, 0]}")
 print(f"Final total stress: {history[-1, 1]}")
@@ -67,11 +67,13 @@ key = jr.key(123)
 keys = jr.split(key, len(betas))
 
 states_out = {}
+stress_out = {}
 metrics_out = {}
 
 for (b, k) in zip(betas, keys):
     params = itt23.ODEParams(beta=b)
-    all_states, history = run_simulation(model, params, k)
+    all_states, stress_states, history = run_simulation(model, params, k)
     states_out[f"{b:.1f}"] = all_states
+    stress_out[f"{b:.1f}"] = stress_states
     metrics_out[f"{b:.1f}"] = history
 ```

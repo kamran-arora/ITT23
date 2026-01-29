@@ -93,12 +93,12 @@ class BaseModel(eqx.Module):
         def _scan_fn(carry, t):
             _state = carry
             _new_state, _metrics = self._step(_state, params)
-            return _new_state, (_new_state.grid, _metrics)
+            return _new_state, (_new_state.grid, _new_state.stress, _metrics)
 
-        _final_state, (_grid_history, _metrics_history) = jax.lax.scan(
+        _final_state, (_grid_history, _stress_history, _metrics_history) = jax.lax.scan(
             _scan_fn, _init_state, jnp.arange(self.T)
         )
-        return _grid_history, _metrics_history
+        return _grid_history, _stress_history, _metrics_history
 
     def __call__(self, params, key):
         return self._call(params, key)
