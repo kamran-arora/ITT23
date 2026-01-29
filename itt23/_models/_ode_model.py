@@ -68,6 +68,8 @@ class ODEModel(BaseModel):
         elif self.I_type == "kernel":
             _k_sum = self._get_kernel_conv(_grid, k_size=7)
             _I_2 = jnp.exp(-params.beta * _k_sum)
+        elif self.I_type == "actually_constant":
+            _I_2 = 1
 
         if self.gamma_type == "constant":
             _gamma = params.gamma
