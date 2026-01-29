@@ -8,6 +8,8 @@ wheels/
 
 # virtual environments
 .venv
+/venv1
+/venv
 
 # data
 *.npy

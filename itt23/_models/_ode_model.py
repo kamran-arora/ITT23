@@ -75,6 +75,10 @@ class ODEModel(BaseModel):
             )
         elif self.gamma_type == "type3":
             _gamma = params.gamma * _dist_field
+        elif self.gamma_type == "type4":
+            _gamma = params.gamma * jnp.sqrt(_dist_field)
+        
+
         if self.use_exp_stress:
             if self.use_I:
                 _generation = (
