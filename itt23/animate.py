@@ -115,7 +115,7 @@ anim = FuncAnimation(
     fig,
     update,
     frames=T,
-    interval=50,
+    interval=10,
     blit=False,
 )
 

@@ -53,6 +53,8 @@ class ODEModel(BaseModel):
         elif self.I_type == "kernel":
             _k_sum = self._get_kernel_conv(_grid, k_size=7)
             _I_1 = jnp.exp(-params.beta * _k_sum)
+        elif self.I_type == "actually_constant":
+            _I_1 = 1
         _new_seeds = (_grid == 0) & _init_mask & (_u_rnd < params.lambda0 * _I_1)
         _grid = jnp.where(_new_seeds, 1, _grid).astype(jnp.int8)
 
